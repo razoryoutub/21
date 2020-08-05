@@ -4,6 +4,8 @@ import time
 import saver
 mast = ['черви', 'буби', 'пики', 'крести']
 imaje = ['туз', 'валет', 'дама', 'король']
+
+
 os.system('cls')
 print('для взятия карт нажимайте "enter"(ввод)')
 print('для завершения набора введите что-то и нажмите "enter"(ввод)')
@@ -53,6 +55,7 @@ def randomcart():
 		return(imaje[card-11] + ' ' + mast[mast_n] + ' ' + str(card-10))
 	else:
 		return(str(card) + ' ' + mast[mast_n] + ' ' + str(card))
+
 
 def q_game():
 	global q_cards
@@ -106,7 +109,6 @@ def q_game():
 				continiue()
 			else:
 				exit()
-
 
 
 def gameloop():
