@@ -23,6 +23,7 @@ def continiue():
 	q_sum = 0
 	cp = True
 	cp_u = ""
+	saver.clear()
 	gameloop()
 
 
@@ -65,17 +66,26 @@ def q_game():
 		if q_sum < 21 and cp:
 			time.sleep(2)
 			if q_sum < 15:
-				q_cards += randomcart()
+				temp_card = randomcart()
+				while saver.check(temp_card[0:-2]) == 'True':
+						temp_card = randomcart()
+				q_cards += temp_card
+				saver.add(temp_card[0:-2])
 				q_sum += int(q_cards.split()[-1])
 				q_cards = q_cards[0:-2] + ' | '
 				print(q_cards.split()[-3] + ' ' + q_cards.split()[-2])
 			else: 
 				if random.randint(1,100) >= 65:
-					q_cards += randomcart()
+					temp_card = randomcart()
+					while saver.check(temp_card[0:-2])  == 'True':
+							temp_card = randomcart()
+					q_cards += temp_card
+					saver.add(temp_card[0:-2])
 					q_sum += int(q_cards.split()[-1])
 					q_cards = q_cards[0:-2] + ' | '
 					print(q_cards.split()[-3] + ' ' + q_cards.split()[-2])
 				else:
+					print('-Пас')
 					cp = False
 		else:
 			time.sleep(3)
@@ -106,10 +116,18 @@ def gameloop():
 	global q_sum
 	os.system('cls')
 	if q_cards == "":
-		q_cards += randomcart()
+		temp_card = randomcart()
+		while saver.check(temp_card[0:-2])  == 'True':
+			temp_card = randomcart()
+		q_cards += temp_card
+		saver.add(temp_card[0:-2])
 		q_sum += int(q_cards.split()[-1])
 		q_cards = q_cards[0:-2] + ' | '
-	u_cards += randomcart()
+	temp_card = randomcart()
+	while saver.check(temp_card[0:-2])  == 'True':
+			temp_card = randomcart()
+	u_cards += temp_card
+	saver.add(temp_card[0:-2])
 	u_sum += int(u_cards.split()[-1])
 	print('Карта крупье: {0} \n\nВаши карты: {1}'.format(q_cards[0:-2], u_cards[0:-2]))
 	print('Сумма ваших очков: ' + str(ochki(u_sum)))
@@ -145,4 +163,5 @@ if __name__ == '__main__':
 	q_sum = 0
 	cp = True
 	cp_u = ""
+	saver.clear()
 	gameloop()
