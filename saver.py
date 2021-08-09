@@ -1,14 +1,17 @@
 a = []
 
+
 def add(card):
 	global a
 	a.append(card)
+
 
 def check(card):
 	global a
 	for i in range(0, len(a)):
 		if a[i] == card:
 			return True
+
 
 def clear():
 	global a
